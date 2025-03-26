@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Check</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapercave.com/wp/wp15166523.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: red;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .header h2 {
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .menu {
+            cursor: pointer;
+            position: absolute;
+            left: 15px;
+            font-size: 24px;
+        }
+        .menu-content {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+            width: 250px;
+            text-align: left;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        .menu-content p {
+            margin: 20px 0;
+            color: #333;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .menu-content p:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        .contact-seller {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            border: 2px solid black;
+            text-align: center;
+        }
+        .contact-seller:hover {
+            background-color: darkred;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+            border: none;
+        }
+        .yes:hover {
+            background-color: darkgreen;
+        }
+        .no {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+        .no:hover {
+            background-color: darkred;
+        }
+        h2 {
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        #main {
+            animation: fadeIn 1s;
+            padding-top: 80px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #videoContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+        iframe {
+            width: 80%; /* Adjust width as needed */
+            height: 500px; /* Fixed height */
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+            }
+            .menu {
+                font-size: 20px;
+            }
+            .menu-content {
+                width: 200px;
+                padding: 15px;
+            }
+            .menu-content p {
+                font-size: 16px;
+                padding: 12px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            iframe {
+                width: 100%; /* Full width on mobile */
+                height: auto; /* Auto height on mobile */
+            }
+        }
+    </style>
+</head>
+<body onload="showMainPage()">
+    <div class="header">
+        <div class="menu" onclick="toggleMenu()">☰</div>
+        <h2>DEMO</h2>
+        <div class="menu-content" id="menuContent">
+            <p>Cip demos</p>
+            <p>Ra demos</p>
+            <p class="contact-seller" onclick="redirectToTelegram()">Contact seller</p>
+        </div>
+    </div>
+    <div id="main" class="hidden">
+        <h1>DHON_CHUSHE_DEN</h1>
+        <div id="videoContainer">
+            <!-- Iframes will be dynamically generated here -->
+        </div>
+        <button class="no" onclick="prevVideo()">Previous</button>
+        <button class="yes" onclick="nextVideo()">Next</button>
+    </div>
+    
+    <!-- Include a separate file with just the videoLinks array -->
+    <script src="videoLinks.js"></script>
+    
+    <script>
+        let currentVideoIndex = 0;
+
+        function showMainPage() {
+            document.getElementById('main').classList.remove('hidden');
+            loadVideo(currentVideoIndex);
+        }
+
+        function loadVideo(index) {
+            const videoContainer = document.getElementById('videoContainer');
+            videoContainer.innerHTML = `<iframe src="${videoLinks[index]}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>`;
+        }
+
+        function nextVideo() {
+            if (currentVideoIndex < videoLinks.length - 1) {
+                currentVideoIndex++;
+                loadVideo(currentVideoIndex);
+            }
+        }
+
+        function prevVideo() {
+            if (currentVideoIndex > 0) {
+                currentVideoIndex--;
+                loadVideo(currentVideoIndex);
+            }
+        }
+
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+
+        function redirectToTelegram() {
+            window.location.href = "https://t.me/polanamaiia";
+        }
+    </script>
+</body>
+</html>
