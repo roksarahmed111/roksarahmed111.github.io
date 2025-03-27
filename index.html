@@ -156,6 +156,41 @@
                 height: auto; /* Auto height on mobile */
             }
         }
+        .random {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .random:hover {
+            background-color: #0056b3;
+        }
+        .instructions {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            text-align: left;
+        }
+        .instructions p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+        }
+        .instructions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .instructions li {
+            color: #fff;
+            padding: 8px 0;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .instructions li:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body onload="showMainPage()">
@@ -169,12 +204,22 @@
         </div>
     </div>
     <div id="main" class="hidden">
-        <h1>DHON_CHUSHE_DEN</h1>
         <div id="videoContainer">
             <!-- Iframes will be dynamically generated here -->
         </div>
         <button class="no" onclick="prevVideo()">Previous</button>
+        <button class="random" onclick="playRandomVideo()">Play Random</button>
         <button class="yes" onclick="nextVideo()">Next</button>
+        
+        <div class="instructions">
+            <p>Welcome visitor...</p>
+            <ul>
+                <li>Click Play Random button to play random video</li>
+                <li>Click on the 3 line at top left to access other category content</li>
+                <li>Click the contact seller button to direct purchase videos from seller</li>
+                <li>or enjoy free samples here</li>
+            </ul>
+        </div>
     </div>
     
     <!-- Include a separate file with just the videoLinks array -->
@@ -218,6 +263,12 @@
 
         function redirectToTelegram() {
             window.location.href = "https://t.me/polanamaiia";
+        }
+
+        function playRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videoLinks.length);
+            currentVideoIndex = randomIndex;
+            loadVideo(currentVideoIndex);
         }
     </script>
 </body>
