@@ -22,7 +22,11 @@ function showMainPage() {
 
 function loadVideo(index) {
     const videoContainer = document.getElementById('videoContainer');
-    videoContainer.innerHTML = `<iframe src="${videoLinks[index]}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>`;
+    videoContainer.style.opacity = 0;
+    setTimeout(() => {
+        videoContainer.innerHTML = `<iframe src="${videoLinks[index]}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>`;
+        videoContainer.style.opacity = 1;
+    }, 300);
 }
 
 function nextVideo() {
@@ -98,4 +102,11 @@ async function loginUser(username, password) {
         return true;
     }
     return false;
+}
+
+function headerScroll() {
+    const header = document.querySelector('.header');
+    header.style.boxShadow = window.pageYOffset > 50 
+        ? '0 4px 15px rgba(0,0,0,0.2)' 
+        : 'none';
 } 
