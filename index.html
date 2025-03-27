@@ -191,6 +191,15 @@
         .instructions li:last-child {
             border-bottom: none;
         }
+        .welcome-text {
+            margin: 20px 0;
+            color: #fff;
+        }
+        .welcome-text h1 {
+            font-size: 28px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 <body onload="showMainPage()">
@@ -204,6 +213,9 @@
         </div>
     </div>
     <div id="main" class="hidden">
+        <div class="welcome-text">
+            <h1>Welcome to Our Video Collection!</h1>
+        </div>
         <div id="videoContainer">
             <!-- Iframes will be dynamically generated here -->
         </div>
