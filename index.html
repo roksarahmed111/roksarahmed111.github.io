@@ -243,5 +243,19 @@
     <script>
         // No need to redefine currentVideoIndex as it should be in videoFunctions.js
     </script>
+    <div style="text-align: center; margin: 20px 0; color: #fff;">
+        <p>If you like my page, share with others so I can add more free videos</p>
+        <button onclick="copyLink()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px;">Copy Link</button>
+    </div>
+    <script>
+        function copyLink() {
+            const link = "https://roksarahmed111.github.io";
+            navigator.clipboard.writeText(link).then(() => {
+                alert("Link copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
