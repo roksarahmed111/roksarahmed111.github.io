@@ -214,7 +214,7 @@
     </div>
     <div id="main" class="hidden">
         <div class="welcome-text">
-            <h1>Welcome to Our Video Collection!</h1>
+            <h1>Free Videos!</h1>
         </div>
         <div id="videoContainer">
             <!-- Iframes will be dynamically generated here -->
@@ -234,54 +234,25 @@
         </div>
     </div>
     
-    <!-- Include a separate file with just the videoLinks array -->
-    <script src="videoLinks.js"></script>
+    <!-- Add this section for the login form -->
+    <div id="login" class="hidden">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage"></p>
+    </div>
     
+    <!-- Include the videoLinks array -->
+    <script src="videoLinks.js"></script>
+    <!-- Include the video player functions -->
+    <script src="videoFunctions.js"></script>
+
+    <!-- Initialize the player when page loads -->
     <script>
-        let currentVideoIndex = 0;
-
-        function showMainPage() {
-            document.getElementById('main').classList.remove('hidden');
-            loadVideo(currentVideoIndex);
-        }
-
-        function loadVideo(index) {
-            const videoContainer = document.getElementById('videoContainer');
-            videoContainer.innerHTML = `<iframe src="${videoLinks[index]}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>`;
-        }
-
-        function nextVideo() {
-            if (currentVideoIndex < videoLinks.length - 1) {
-                currentVideoIndex++;
-                loadVideo(currentVideoIndex);
-            }
-        }
-
-        function prevVideo() {
-            if (currentVideoIndex > 0) {
-                currentVideoIndex--;
-                loadVideo(currentVideoIndex);
-            }
-        }
-
-        function toggleMenu() {
-            const menuContent = document.getElementById('menuContent');
-            if (menuContent.style.display === 'block') {
-                menuContent.style.display = 'none';
-            } else {
-                menuContent.style.display = 'block';
-            }
-        }
-
-        function redirectToTelegram() {
-            window.location.href = "https://t.me/polanamaiia";
-        }
-
-        function playRandomVideo() {
-            const randomIndex = Math.floor(Math.random() * videoLinks.length);
-            currentVideoIndex = randomIndex;
-            loadVideo(currentVideoIndex);
-        }
+        // No need to redefine currentVideoIndex as it should be in videoFunctions.js
     </script>
 </body>
 </html>
