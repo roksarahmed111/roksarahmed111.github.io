@@ -23,9 +23,13 @@ function showMainPage() {
 function loadVideo(index) {
     const videoContainer = document.getElementById('videoContainer');
     const videoUrl = videoLinks[index];
-    // Convert do7go.com URL to doodstream embed URL
+    
+    // Log the video URL to the console for debugging
+    console.log(`Loading video: ${videoUrl}`);
+    
     const videoId = videoUrl.split('/').pop();
     const embedUrl = `https://doodstream.com/e/${videoId}`;
+    
     // Create iframe element with proper attributes
     videoContainer.innerHTML = `<iframe src="${embedUrl}" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>`;
 }
