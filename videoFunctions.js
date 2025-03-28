@@ -22,11 +22,12 @@ function showMainPage() {
 
 function loadVideo(index) {
     const videoContainer = document.getElementById('videoContainer');
-    videoContainer.style.opacity = 0;
-    setTimeout(() => {
-        videoContainer.innerHTML = `<iframe src="${videoLinks[index]}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>`;
-        videoContainer.style.opacity = 1;
-    }, 300);
+    const videoUrl = videoLinks[index];
+    // Convert do7go.com URL to doodstream embed URL
+    const videoId = videoUrl.split('/').pop();
+    const embedUrl = `https://doodstream.com/e/${videoId}`;
+    // Create iframe element with proper attributes
+    videoContainer.innerHTML = `<iframe src="${embedUrl}" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>`;
 }
 
 function nextVideo() {

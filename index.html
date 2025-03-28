@@ -221,7 +221,7 @@
         }
     </style>
 </head>
-<body onload="showMainPage()" onscroll="headerScroll()">
+<body onscroll="headerScroll()">
     <div class="header">
         <div class="menu" onclick="toggleMenu()">☰</div>
         <h2>DEMO</h2>
@@ -241,9 +241,9 @@
         <button class="no" onclick="prevVideo()">Previous</button>
         <button class="random" onclick="playRandomVideo()">Play Random</button>
         <button class="yes" onclick="nextVideo()">Next</button>
-        
         <div class="instructions">
             <p>Welcome visitor...</p>
+            <p style="color: red; font-size: 20px; font-weight: bold; text-align: center;">Click "back" button in your phone again if ad comes</p>
             <ul>
                 <li>Click Play Random button to play random video</li>
                 <li>Click on the 3 line at top left to access other category content</li>
@@ -253,8 +253,9 @@
         </div>
     </div>
     
-    <!-- Include the videoLinks array -->
+    <!-- Include the videoPlaylist array -->
     <script src="videoLinks.js"></script>
+    <script src="videoPlaylist.js"></script>
     <!-- Include the video player functions -->
     <script src="videoFunctions.js"></script>
 
@@ -275,6 +276,16 @@
                 console.error('Failed to copy: ', err);
             });
         }
+    </script>
+    <script>
+        // Ensure the DOM is fully loaded and scripts are parsed
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Check if videoLinks is defined and has items
+            // Set a random starting index
+            currentVideoIndex = Math.floor(Math.random() * videoLinks.length);
+            // Now call showMainPage which uses the potentially updated currentVideoIndex
+            showMainPage();
+        });
     </script>
 </body>
 </html>
